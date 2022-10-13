@@ -1,12 +1,27 @@
+/// Greatly reduced representation of the data representing when a class is meeting, and where, if any.
 class MeetingTime {
+  /// What time the class officially starts a meeting/
   late final String? beginTime;
+
+  /// What time the class officially ends a meeting.
   late final String? endTime;
+
+  /// What day the class starts meeting.
   late final String startDate;
+
+  /// What day the class stops meeting.
   late final String endDate;
 
+  /// Building description
+  ///
+  /// In my case this is usually defined as "Campus - Building name",
+  /// web just shows up as "Web".
   late final String? buildingDescription;
+
+  /// Room number
   late final String? room;
 
+  /// Representation of the days of the week the class meets
   Map<String, bool> days = {
     "sunday": false,
     "monday": false,
