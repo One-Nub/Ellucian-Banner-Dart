@@ -1,17 +1,20 @@
 import 'meeting_time.dart';
+import 'subject.dart';
 
 /// Reduced course representation.
 ///
 /// The actual API returns far more variables than what was outlined here, but I only included
 /// what I consider as useful/necessary information for the time being.
 class Course {
-  /// Ellucian ID
+  /// Ellucian ID identifying the class.
   late final int id;
 
   /// Public facing ID of course
   late final String courseReferenceNumber;
 
-  /// Appears to be 1 of 3 values... "1" (full semester), "H2H" (first half), "P1H" (second half)
+  /// Which part of the semester this class meets.
+  ///
+  /// Appears to be 1 of 3 values... "1" (full semester - 16wks), "H2H" (first 8wks), "P1H" (second 8wks)
   late final String partOfTerm;
 
   /// Commonly known course ID (but not as specific as CRN)
@@ -20,8 +23,8 @@ class Course {
   /// The section for this course.
   late final String sequenceNumber;
 
-  /// Class subject (ITSY, CYBR, PHYS, etc...)
-  late final String subject;
+  /// Class [subject] (ITSY, CYBR, PHYS, etc...)
+  late final Subject subject;
 
   /// Campus name usually, Web if other
   late final String campusDescription;
