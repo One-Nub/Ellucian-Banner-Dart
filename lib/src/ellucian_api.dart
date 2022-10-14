@@ -64,6 +64,7 @@ class EllucianApi {
     return response.body == "true";
   }
 
+  /// Search for classes based upon any variety of the accepted parameters (term, subject, course number, etc).
   Future<List<dynamic>> searchForClasses(
       {required String term,
       String? subject,
@@ -102,8 +103,6 @@ class EllucianApi {
   ///
   /// I found out this was necessary after stumbling across the documentation some other students made regarding the
   /// Ellucian Banner API for [their college](https://jennydaman.gitlab.io/nubanned/dark.html#studentregistrationssb-search-get).
-  ///
-  /// It seems rather counterintuitive to include a term query in the actual search request if this is set, but I digress.
   ///
   /// No response is returned since it's always a 200 response, invalid term numbers don't error either.
   Future<void> postSearchTerm(String term) async {
