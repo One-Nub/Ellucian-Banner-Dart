@@ -15,6 +15,9 @@ class Course {
   /// Which part of the semester this class meets.
   ///
   /// Appears to be 1 of 3 values... "1" (full semester - 16wks), "H2H" (first 8wks), "P1H" (second 8wks)
+  ///
+  /// More values appear to exist, some example valid values for a term are
+  /// returned via the `classSearch/get_partOfTerm` endpoint.
   late final String partOfTerm;
 
   /// Commonly known course ID (but not as specific as CRN)
