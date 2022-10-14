@@ -41,6 +41,27 @@ class Course {
   /// Information regarding course room, dates, times, etc
   late final MeetingTime? meetingInfo;
 
+  /// Description of how this course will be taught.
+  late final String? instructionalMethodDesc;
+
+  /// Maximum amount of students that can take this course.
+  late final int? maxEnrollment;
+
+  /// Current number of students enrolled in this course.
+  late final int? enrollment;
+
+  /// Number of seats available to students looking to enroll in this course.
+  late final int? availableSeats;
+
+  /// Maximum amount of students that can join the waitlist for this course.
+  late final int? waitlistCapacity;
+
+  /// Current number of students waitlisted for this course.
+  late final int? waitlistCount;
+
+  /// Number of seats available for students looking to enroll in the waitlist for this course.
+  late final int? availableWaitlistSeats;
+
   Course.fromJson(Map<String, dynamic> input) {
     id = input["id"];
     courseReferenceNumber = input["courseReferenceNumber"].toString();
@@ -51,6 +72,15 @@ class Course {
     campusDescription = input["campusDescription"];
     courseTitle = input["courseTitle"];
     scheduleTypeDescription = input["scheduleTypeDescription"];
+    instructionalMethodDesc = input["instructionalMethodDescription"];
+
+    maxEnrollment = input["maximumEnrollment"];
+    enrollment = input["enrollment"];
+    availableSeats = input["seatsAvailable"];
+    waitlistCapacity = input["waitCapacity"];
+    waitlistCount = input["waitCount"];
+    availableWaitlistSeats = input["waitAvailable"];
+
     if (input["faculty"] != null && input["faculty"].isNotEmpty) {
       /// Faculty is a list, with each element being a json map, so get the first result & show.
       /// generally speaking we don't have >1 instructor (tmk), so this should be a safe assumption.
@@ -59,6 +89,7 @@ class Course {
       /// doing that, instructors would get their own class representation.
       instructorName = input["faculty"].first["displayName"];
     }
+
     if (input["meetingsFaculty"] != null && input["meetingsFaculty"].isNotEmpty) {
       Map<String, dynamic> meetingData = input["meetingsFaculty"];
       if (meetingData.isNotEmpty) {
