@@ -71,7 +71,7 @@ class Course {
     partOfTerm = input["partOfTerm"].toString();
     courseNumber = input["courseNumber"].toString();
     sequenceNumber = input["sequenceNumber"].toString();
-    subject = input["subject"];
+    subject = Subject(code: input["subject"], description: input["subjectDescription"]);
     campusDescription = input["campusDescription"];
     courseTitle = input["courseTitle"];
     scheduleTypeDescription = input["scheduleTypeDescription"];
@@ -94,7 +94,7 @@ class Course {
     }
 
     if (input["meetingsFaculty"] != null && input["meetingsFaculty"].isNotEmpty) {
-      Map<String, dynamic> meetingData = input["meetingsFaculty"];
+      Map<String, dynamic> meetingData = input["meetingsFaculty"].first;
       if (meetingData.isNotEmpty) {
         meetingInfo = MeetingTime.fromJson(meetingData);
       }

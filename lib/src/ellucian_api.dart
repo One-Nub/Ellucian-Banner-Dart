@@ -74,12 +74,16 @@ class EllucianApi {
       Map<String, dynamic>? additional_queries}) async {
     Map<String, dynamic> queryParameters = {
       "txt_term": term,
-      "pageOffset": pageOffset,
-      "pageMaxSize": pageMaxSize
+      "pageOffset": pageOffset.toString(),
+      "pageMaxSize": pageMaxSize.toString()
     };
     if (subject != null) queryParameters["txt_subject"] = subject;
     if (courseNumber != null) queryParameters["txt_courseNumber"] = courseNumber;
-    if (additional_queries != null) queryParameters.addAll(additional_queries);
+    if (additional_queries != null) {
+      for (var key in additional_queries.keys) {
+        queryParameters.putIfAbsent(key, () => additional_queries[key].toString());
+      }
+    }
 
     UriBuilder builder = UriBuilder(
         scheme: _scheme, host: _host, path: "$_basePath$_searchResults", queryParameters: queryParameters);

@@ -47,13 +47,15 @@ class BannerAPI {
     await ellucianApi.resetSearchForm();
     await ellucianApi.postSearchTerm(term.code);
 
-    String subjectCode = "";
+    String? subjectCode;
     if (subject != null) subjectCode = subject.code;
 
-    if (additionalQueries != null) {
-      additionalQueries.addAll({"chk_open_only": showOnlyOpen});
+    if (showOnlyOpen) {
+      if (additionalQueries != null) {
+        additionalQueries.addAll({"chk_open_only": showOnlyOpen});
+      }
+      additionalQueries ??= {"chk_open_only": showOnlyOpen};
     }
-    additionalQueries ??= {"chk_open_only": showOnlyOpen};
 
     var queryResult = await ellucianApi.searchForClasses(
         term: term.code,
